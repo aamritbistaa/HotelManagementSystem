@@ -15,7 +15,7 @@ class details:
     def __init__(self,root):
         self.root=root
         self.root.title("Hotel Management System")
-        self.root.geometry("1300x563+230+220")
+        self.root.geometry("1300x563+226+220")
 
 
         #-------tittle------------------------
