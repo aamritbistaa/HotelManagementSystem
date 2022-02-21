@@ -105,10 +105,7 @@ class room_booking:
         label_meal.grid(row=5,column=0,sticky=W)
 
         text_meal=ttk.Entry(label_frame_left,width=26,textvariable=self.var_meal,font=("arial",12,"bold"))
-        text_meal.grid(row=5,column=1)
-
-    
-        
+        text_meal.grid(row=5,column=1)     
 
 
 
@@ -127,21 +124,21 @@ class room_booking:
         
         
         #paid tax
-        label_paid_tax=Label(label_frame_left,padx=2,pady=6,text="Paid total: ",font=("arial",14,"bold"))
+        label_paid_tax=Label(label_frame_left,padx=2,pady=6,text="Tax: ",font=("arial",14,"bold"))
         label_paid_tax.grid(row=7,column=0,sticky=W)
 
         text_paid_tax=ttk.Entry(label_frame_left,width=26,textvariable=self.var_paidtax,font=("arial",12,"bold"))
         text_paid_tax.grid(row=7,column=1) 
 
         #sub total
-        label_sub_cost=Label(label_frame_left,padx=2,pady=6,text="Sub Total: ",font=("arial",14,"bold"))
+        label_sub_cost=Label(label_frame_left,padx=2,pady=6,text="Total: ",font=("arial",14,"bold"))
         label_sub_cost.grid(row=8,column=0,sticky=W)
 
         text_sub_cost=ttk.Entry(label_frame_left,width=26,textvariable=self.var_actualtotal,font=("arial",12,"bold"))
         text_sub_cost.grid(row=8,column=1) 
 
         #total
-        label_total_cost=Label(label_frame_left,padx=2,pady=6,text="Total cost: ",font=("arial",14,"bold"))
+        label_total_cost=Label(label_frame_left,padx=2,pady=6,text="Grand Total: ",font=("arial",14,"bold"))
         label_total_cost.grid(row=9,column=0,sticky=W)
 
         text_total_cost=ttk.Entry(label_frame_left,textvariable=self.var_total,width=26,font=("arial",12,"bold"))
@@ -240,10 +237,10 @@ class room_booking:
         entry_search=ttk.Entry(label_frame_middle,textvariable=self.txt_search,width=30,font=("arial",12,"bold"))
         entry_search.grid(row=0,column=2,padx=10)
 
-        btn_search=Button(label_frame_middle,text="Search",font=("arial",12,"bold"),bg="black",fg="gold",width=9)
+        btn_search=Button(label_frame_middle,command=self.search,text="Search",font=("arial",12,"bold"),bg="black",fg="gold",width=9)
         btn_search.grid(row=0,column=3,padx=10)
 
-        btn_show_all=Button(label_frame_middle,text="Show All",font=("arial",12,"bold"),bg="black",fg="gold",width=9)
+        btn_show_all=Button(label_frame_middle,text="Show All",command=self.fetch_data,font=("arial",12,"bold"),bg="black",fg="gold",width=9)
         btn_show_all.grid(row=0,column=4,padx=10)
 
         #------show data table-----
@@ -266,7 +263,7 @@ class room_booking:
         self.room_table.heading("checkin",text="Checkin")
         self.room_table.heading("checkout",text="Checkout")
         self.room_table.heading("roomtype",text="Room Type")        
-        self.room_table.heading("roomavailable",text="Room Rvailable")
+        self.room_table.heading("roomavailable",text="Room No")
         self.room_table.heading("meal",text="Meal")
         self.room_table.heading("noofdays",text="No Of Days")
 
@@ -419,12 +416,64 @@ class room_booking:
         conn.commit()
         conn.close()
 
+
+    def search(self):
+        conn=mysql.connector.connect(host="localhost",username="root",password="",database="hotelmanagementsystem")
+        my_cursor=conn.cursor()
+        my_cursor.execute("select * from room where "+str(self.search_var.get())+" LIKE '%"+str(self.txt_search.get())+"%'")
+        rows=my_cursor.fetchall()
+        if len(rows)!=0:
+            self.room_table.delete(*self.room_table.get_children())
+            for i in rows:
+                self.room_table.insert("",END,values=i)
+
+            conn.commit()
+        conn.close()
+
+
+
     def total(self):
         inDate=self.var_checkin.get()
         outDate=self.var_checkout.get()
         inDate=datetime.strptime(inDate,"%d/%m/%Y")
         outDate=datetime.strptime(outDate,"%d/%m/%Y")
         self.var_noofdays.set(abs(outDate-inDate).days)
+
+        #food cost
+        if((self.var_meal.get().upper())=="BREAKFAST"):
+            q1=float(150)
+        elif((self.var_meal.get().upper())=="LUNCH"):
+            q1=float(250)
+        elif((self.var_meal.get().upper())=="DINNER"):
+            q1=float(400)
+        elif((self.var_meal.get().upper())=="ALL"):
+            q1=float(800)
+
+
+        #room cost
+        if((self.var_roomtype.get())=="Single"):
+            q2=float(500)
+        elif((self.var_roomtype.get())=="Double"):
+            q2=float(1500)
+        elif((self.var_roomtype.get())=="Suit"):
+            q2=float(2500)
+        elif((self.var_roomtype.get())=="Villa"):
+            q2=float(4000)
+        
+        #calculation
+        q3=float(self.var_noofdays.get())
+        q5=float((q1*q3)+(q2*q3))
+
+        Tax="RS. "+str("%.2f"%((q5)*0.1))
+        ST="RS. "+str("%.2f"%((q5)))
+        TT="RS. "+str("%.2f"%((q5)+((q5)*0.1)))
+        self.var_paidtax.set(Tax)
+        self.var_actualtotal.set(ST)
+        self.var_total.set(TT)
+
+
+
+
 
     def get_cursor(self,event=""):
         cursor_row=self.room_table.focus()
@@ -518,7 +567,9 @@ class room_booking:
         self.var_roomavailable.set("")
         self.var_meal.set("")
         self.var_noofdays.set("")
-
+        self.var_paidtax.set("")
+        self.var_actualtotal.set("")
+        self.var_total.set("")
 
     
 
