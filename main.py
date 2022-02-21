@@ -3,6 +3,7 @@ from turtle import width
 from PIL import Image,ImageTk
 from customer import customer_window
 from room import room_booking
+from details import details
 
 class HotelManagementSystem:
     def __init__(self,root):
@@ -61,7 +62,7 @@ class HotelManagementSystem:
         room_btn=Button(btn_frame,text="Room",command=self.room_booking,width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd=0,cursor="hand2")
         room_btn.grid(row=1,column=0,pady=1)
 
-        details_btn=Button(btn_frame,text="Details",width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd=0,cursor="hand2")
+        details_btn=Button(btn_frame,text="Details",command=self.details,width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd=0,cursor="hand2")
         details_btn.grid(row=2,column=0,pady=1)
         
         report_btn=Button(btn_frame,text="Report",width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd=0,cursor="hand2")
@@ -105,6 +106,10 @@ class HotelManagementSystem:
     def room_booking(self):
         self.new_window=Toplevel(self.root)
         self.app=room_booking(self.new_window)
+
+    def details(self):
+        self.new_window=Toplevel(self.root)
+        self.app=details(self.new_window)
 
         
 

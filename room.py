@@ -1,7 +1,3 @@
-#from cProfile import label
-#from cgitb import reset
-#from msilib.schema import ComboBox
-#from textwrap import fill
 from tkinter import *
 from tkinter.font import BOLD
 from PIL import Image,ImageTk
