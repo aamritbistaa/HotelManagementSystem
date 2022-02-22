@@ -315,8 +315,7 @@ class room_booking:
             if row==None:
                 messagebox.showerror("Error","User not found \nInvalid contact number",parent=self.root)
             else:
-                conn.commit()
-                conn.close()
+                
                 
                 #frame
                 label_frame_mid=LabelFrame(self.root,bd=5,relief=RIDGE,text="Customer Details",padx=2,font=("times new roman",14,"bold"))
@@ -343,6 +342,9 @@ class room_booking:
                 lblgender=Label(label_frame_mid,text=row,font=("arial",14))
                 lblgender.grid(row=1,column=1,sticky=W)
 
+                conn.commit()
+                conn.close()
+
                 #display nationality::
                 conn=mysql.connector.connect(host="localhost",username="root",password="",database="hotelmanagementsystem")
                 my_cursor=conn.cursor()
@@ -356,6 +358,9 @@ class room_booking:
 
                 lblnationality=Label(label_frame_mid,text=row,font=("arial",14))
                 lblnationality.grid(row=2,column=1,sticky=W)
+
+                conn.commit()
+                conn.close()
 
 
                 #display idproof::
@@ -373,6 +378,9 @@ class room_booking:
                 lblidproof=Label(label_frame_mid,text=row,font=("arial",14))
                 lblidproof.grid(row=3,column=1,sticky=W)
 
+                conn.commit()
+                conn.close()
+
 
                 #display idnumber::
 
@@ -388,6 +396,9 @@ class room_booking:
 
                 lblidnumber=Label(label_frame_mid,text=row,font=("arial",14))
                 lblidnumber.grid(row=4,column=1,sticky=W)
+                
+                conn.commit()
+                conn.close()
 
                 #display Email::
 
@@ -404,6 +415,9 @@ class room_booking:
                 lblemail=Label(label_frame_mid,text=row,font=("arial",14))
                 lblemail.grid(row=5,column=1,sticky=W)
 
+                conn.commit()
+                conn.close()
+
                 #display address::
 
                 conn=mysql.connector.connect(host="localhost",username="root",password="",database="hotelmanagementsystem")
@@ -418,6 +432,13 @@ class room_booking:
 
                 lbladdress=Label(label_frame_mid,text=row,font=("arial",14))
                 lbladdress.grid(row=6,column=1,sticky=W)
+
+                
+                conn.commit()
+                conn.close()
+
+            conn.commit()
+            conn.close()
 
 #----------------fetch data-----
     def fetch_data(self):
@@ -444,7 +465,7 @@ class room_booking:
             for i in rows:
                 self.room_table.insert("",END,values=i)
 
-            conn.commit()
+        conn.commit()
         conn.close()
 
 
@@ -599,10 +620,12 @@ class room_booking:
         rows=my_cursor.fetchall()
         self.var_roomavailable.set(rows)
 
-        combo_room_no=ttk.Combobox(root,font=("arial",12,"bold"),textvariable=self.var_roomavailable,width=17,state="readonly")
+        combo_room_no=ttk.Combobox(self.root,font=("arial",12,"bold"),textvariable=self.var_roomavailable,width=17,state="readonly")
         combo_room_no["value"]=rows
         combo_room_no.current(0)
+
         combo_room_no.place(x=175,y=231)
+        #combo_room_no.grid(row=10,column=10)
         conn.commit()
         conn.close()  
 

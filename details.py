@@ -1,9 +1,9 @@
 from tkinter import *
 from tkinter.font import BOLD
-from PIL import Image,ImageTk
 from tkinter import ttk
-import mysql.connector
 from tkinter import messagebox
+import mysql.connector
+
 
 
 

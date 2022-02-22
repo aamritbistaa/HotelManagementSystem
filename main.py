@@ -38,7 +38,7 @@ class HotelManagementSystem:
 
         #----------frame-----------------
         main_frame=Frame(self.root,bd=4,relief=RIDGE)
-        main_frame.place(x=0,y=190,width=1920,height=650)
+        main_frame.place(x=0,y=190,width=1920,height=670)
 
         #--------------------Exit button--------
 
@@ -52,24 +52,24 @@ class HotelManagementSystem:
 
         #----------button frame---------
         btn_frame=Frame(main_frame,bd=4,relief=RIDGE)
-        btn_frame.place(x=0,y=35,width=230,height=190)
+        btn_frame.place(x=0,y=35,width=230,height=115)
 
 
         #----------------button-----------
-        cust_btn=Button(btn_frame,text="Customer",command=self.customer_details,width=22,font=("times new roman",14,"bold"),bg="#ad4740",fg="white",bd=0,cursor="hand2")
+        cust_btn=Button(btn_frame,text="Customer Window",command=self.customer_details,width=22,font=("times new roman",14,"bold"),bg="#ad4740",fg="white",bd=0,cursor="hand2")
         cust_btn.grid(row=0,column=0,pady=0)
 
-        room_btn=Button(btn_frame,text="Room",command=self.room_booking,width=22,font=("times new roman",14,"bold"),bg="#ad4740",fg="white",bd=0,cursor="hand2")
+        room_btn=Button(btn_frame,text="Room Window",command=self.room_booking,width=22,font=("times new roman",14,"bold"),bg="#ad4740",fg="white",bd=0,cursor="hand2")
         room_btn.grid(row=1,column=0,pady=1)
 
-        details_btn=Button(btn_frame,text="Details",command=self.details,width=22,font=("times new roman",14,"bold"),bg="#ad4740",fg="white",bd=0,cursor="hand2")
+        details_btn=Button(btn_frame,text="Hotel",command=self.details,width=22,font=("times new roman",14,"bold"),bg="#ad4740",fg="white",bd=0,cursor="hand2")
         details_btn.grid(row=2,column=0,pady=1)
         
-        report_btn=Button(btn_frame,text="Report",width=22,font=("times new roman",14,"bold"),bg="#ad4740",fg="white",bd=0,cursor="hand2")
-        report_btn.grid(row=3,column=0,pady=1)
+        # credit_btn=Button(btn_frame,text="Credit",width=22,command=self.credit,font=("times new roman",14,"bold"),bg="#ad4740",fg="white",bd=0,cursor="hand2")
+        # credit_btn.grid(row=3,column=0,pady=1)
 
-        logout_btn=Button(btn_frame,text="Logout",command=self.logout,width=22,font=("times new roman",14,"bold"),bg="#ad4740",fg="white",bd=0,cursor="hand2")
-        logout_btn.grid(row=4,column=0,pady=1)
+        # logout_btn=Button(btn_frame,text="Logout",command=self.logout,width=22,font=("times new roman",14,"bold"),bg="#ad4740",fg="white",bd=0,cursor="hand2")
+        # logout_btn.place(row=4,column=0,pady=1)
 
 
         #---------Right side image----------
@@ -81,23 +81,32 @@ class HotelManagementSystem:
         lbl_image1=Label(main_frame,image=self.photoimage3,bd=4,relief=RIDGE)
         lbl_image1.place(x=225,y=0,width=1310,height=796)
 
+        logout_btn=Button(self.root,text="Logout",command=self.logout,width=20,font=("times new roman",14,"bold"),bg="#ad4740",fg="white",bd=0,cursor="hand2")
+        logout_btn.place(x=1300,y=825)
+
         #--------bottom left images---------
         image4=Image.open(r"Images\food.jpg")
         image4=image4.resize((230,210),Image.ANTIALIAS)
         self.photoimage4=ImageTk.PhotoImage(image4)
-
-
         lbl_image4=Label(main_frame,image=self.photoimage4,bd=4,relief=RIDGE)
-        lbl_image4.place(x=0,y=225,width=230,height=210)
+        lbl_image4.place(x=0,y=150,width=225,height=160)
 
 
+        
         image5=Image.open(r"Images\hotel.jpg")
-        image5=image5.resize((230,190),Image.ANTIALIAS)
+        image5=image5.resize((225,210),Image.ANTIALIAS)
         self.photoimage5=ImageTk.PhotoImage(image5)
-
-
         lbl_image5=Label(main_frame,image=self.photoimage5,bd=4,relief=RIDGE)
-        lbl_image5.place(x=0,y=425,width=230,height=190)
+        lbl_image5.place(x=0,y=310,width=225,height=210)
+
+
+
+
+        image6=Image.open(r"Images\certification.jpg")
+        image6=image6.resize((225,190),Image.ANTIALIAS)
+        self.photoimage6=ImageTk.PhotoImage(image6)
+        lbl_image6=Label(main_frame,image=self.photoimage6,bd=4,relief=RIDGE)
+        lbl_image6.place(x=0,y=520,width=225,height=190)
 
     def customer_details(self):
         self.new_window=Toplevel(self.root)
@@ -113,6 +122,7 @@ class HotelManagementSystem:
 
     def logout(self):
         self.root.destroy()
+
 
         
 
