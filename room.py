@@ -23,6 +23,7 @@ class room_booking:
         self.var_checkin=StringVar()
         self.var_checkout=StringVar()
         self.var_roomtype=StringVar()
+        self.update_room_data=StringVar()
         self.var_roomavailable=StringVar()
         self.var_meal=StringVar()
         self.var_noofdays=StringVar()
@@ -79,7 +80,7 @@ class room_booking:
 
         conn=mysql.connector.connect(host="localhost",username="root",password="",database="hotelmanagementsystem")
         my_cursor=conn.cursor()
-        my_cursor.execute("select roomType from details")
+        my_cursor.execute("select distinct roomType from details")
 
         roomtype=my_cursor.fetchall()
 
@@ -87,26 +88,33 @@ class room_booking:
         combo_room_type["value"]=roomtype
         combo_room_type.current(0)
         combo_room_type.grid(row=3,column=1)
+        conn.commit()
+        conn.close()  
 
         #available room
         label_available=Label(label_frame_left,padx=2,pady=6,text="Available Room: ",font=("arial",14,"bold"),bg="white",fg="black")
         label_available.grid(row=4,column=0,sticky=W)
 
-        # text_available=ttk.Entry(label_frame_left,width=26,textvariable=self.var_roomavailable,font=("arial",12,"bold"))
-        # text_available.grid(row=4,column=1)
+        conn=mysql.connector.connect(host="localhost",username="root",password="",database="hotelmanagementsystem")
+        my_cursor=conn.cursor()
 
-
-        my_cursor.execute("select roomNo from details")
+        query="select roomNo from details where roomType=%s"
+        value=(self.var_roomtype.get(),)
+        my_cursor.execute(query,value)
 
         rows=my_cursor.fetchall()
 
 
-        combo_room_no=ttk.Combobox(label_frame_left,font=("arial",12,"bold"),textvariable=self.var_roomavailable,width=24,state="readonly")
-        combo_room_no["value"]=rows
-        combo_room_no.current(0)
-        combo_room_no.grid(row=4,column=1)
+        # combo_room_no=ttk.Combobox(label_frame_left,font=("arial",12,"bold"),textvariable=self.var_roomavailable,width=17,state="readonly")
+        # combo_room_no["value"]=rows
+        # combo_room_no.current(0)
+        # combo_room_no.grid(row=4,column=1,sticky=W)
         conn.commit()
         conn.close()  
+
+        #fetch data button
+        btn_update_room_data=Button(label_frame_left,command=self.room_check,text="Check room",font=("arial",8),bg="#ad4740",fg="white",width=8)
+        btn_update_room_data.place(x=345,y=157)
 
         #----food-----
         #meal
@@ -579,6 +587,26 @@ class room_booking:
         self.var_paidtax.set("")
         self.var_actualtotal.set("")
         self.var_total.set("")
+
+    def room_check(self):
+        conn=mysql.connector.connect(host="localhost",username="root",password="",database="hotelmanagementsystem")
+        my_cursor=conn.cursor()
+
+        query="select roomNo from details where roomType=%s"
+        value=(self.var_roomtype.get(),)
+        my_cursor.execute(query,value)
+
+        rows=my_cursor.fetchall()
+        self.var_roomavailable.set(rows)
+
+        combo_room_no=ttk.Combobox(root,font=("arial",12,"bold"),textvariable=self.var_roomavailable,width=17,state="readonly")
+        combo_room_no["value"]=rows
+        combo_room_no.current(0)
+        combo_room_no.place(x=175,y=231)
+
+        print(rows)
+        conn.commit()
+        conn.close()  
 
     
 

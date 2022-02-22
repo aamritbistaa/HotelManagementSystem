@@ -1,1 +1,1 @@
-bg="lightgray",fg="gray"
+grid
