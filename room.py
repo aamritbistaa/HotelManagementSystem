@@ -16,6 +16,7 @@ class room_booking:
         self.root=root
         self.root.title("Hotel Management System")
         self.root.geometry("1300x563+226+220")
+        self.root.resizable(False,False)
 
         #--------------Variables----------
         self.var_contact=StringVar()
@@ -33,54 +34,47 @@ class room_booking:
 
 
         #-------tittle------------------------
-        lbl_title=Label(self.root,text="Room Booking Details",font=("times new roman",20,"bold"),bg="black",fg="gold",bd="4",relief=RIDGE)
+        lbl_title=Label(self.root,text="Room Booking Details",font=("times new roman",20,"bold"),bg="#ad4740",fg="white",bd="4",relief=RIDGE)
         lbl_title.place(x=0,y=0,width=1300,height=50)
 
 
-        #-----------logo------------
-        img2=Image.open(r"C:\Users\thebalanar\Desktop\DBMS\Images\logo.jpg")
-        img2=img2.resize((100,40),Image.ANTIALIAS)
-        self.photoimg2=ImageTk.PhotoImage(img2)
-
-        lblimg=Label(self.root,image=self.photoimg2,bd=0,relief=RIDGE)
-        lblimg.place(x=5,y=2,width=100,height=40)
 
 
         #--------label frame--------------
-        label_frame_left=LabelFrame(self.root,bd=5,relief=RIDGE,text="Room Booking Details",padx=2,font=("times new roman",14,"bold"))
+        label_frame_left=LabelFrame(self.root,bd=5,relief=RIDGE,text="Room Booking Details",padx=2,font=("times new roman",14,"bold"),fg="#ad4740",bg="white")
         label_frame_left.place(x=5,y=50,width=426,height=500)
 
         #-------------------------label and entry---------------
         #contact number
-        label_contact=Label(label_frame_left,padx=0,pady=6,text="Contact:",font=("arial",14,"bold"))
+        label_contact=Label(label_frame_left,padx=0,pady=6,text="Contact:",font=("arial",14,"bold"),bg="white",fg="black")
         label_contact.grid(row=0,column=0,sticky=W)
 
         entry_contact=ttk.Entry(label_frame_left,width=19,textvariable=self.var_contact,font=("arial",12,"bold"))
         entry_contact.grid(row=0,column=1,sticky=W)
 
         #fetch data button
-        btn_fetch_data=Button(label_frame_left,command=self.fetch_contact,text="Get data",font=("arial",8,"bold"),bg="black",fg="gold",width=7)
+        btn_fetch_data=Button(label_frame_left,command=self.fetch_contact,text="Get data",font=("arial",8,"bold"),bg="#ad4740",fg="white",width=7)
         btn_fetch_data.place(x=345,y=6)
 
 
 
 
         #check in date
-        label_check_in_date=Label(label_frame_left,padx=2,pady=6,text="Check in date: ",font=("arial",14,"bold"))
+        label_check_in_date=Label(label_frame_left,padx=2,pady=6,text="Check in date: ",font=("arial",14,"bold"),bg="white",fg="black")
         label_check_in_date.grid(row=1,column=0,sticky=W)
 
         text_check_in_date=ttk.Entry(label_frame_left,textvariable=self.var_checkin,width=26,font=("arial",12,"bold"))
         text_check_in_date.grid(row=1,column=1)
 
         #check out date
-        label_check_out_date=Label(label_frame_left,padx=2,pady=6,text="Check out date: ",font=("arial",14,"bold"))
+        label_check_out_date=Label(label_frame_left,padx=2,pady=6,text="Check out date: ",font=("arial",14,"bold"),bg="white",fg="black")
         label_check_out_date.grid(row=2,column=0,sticky=W)
 
         text_check_out_date=ttk.Entry(label_frame_left,textvariable=self.var_checkout,width=26,font=("arial",12,"bold"))
         text_check_out_date.grid(row=2,column=1)
 
         #room type
-        label_room_type=Label(label_frame_left,padx=2,pady=6,text="Room Type: ",font=("arial",14,"bold"))
+        label_room_type=Label(label_frame_left,padx=2,pady=6,text="Room Type: ",font=("arial",14,"bold"),bg="white",fg="black")
         label_room_type.grid(row=3,column=0,sticky=W)
 
         conn=mysql.connector.connect(host="localhost",username="root",password="",database="hotelmanagementsystem")
@@ -95,7 +89,7 @@ class room_booking:
         combo_room_type.grid(row=3,column=1)
 
         #available room
-        label_available=Label(label_frame_left,padx=2,pady=6,text="Available Room: ",font=("arial",14,"bold"))
+        label_available=Label(label_frame_left,padx=2,pady=6,text="Available Room: ",font=("arial",14,"bold"),bg="white",fg="black")
         label_available.grid(row=4,column=0,sticky=W)
 
         # text_available=ttk.Entry(label_frame_left,width=26,textvariable=self.var_roomavailable,font=("arial",12,"bold"))
@@ -116,7 +110,7 @@ class room_booking:
 
         #----food-----
         #meal
-        label_meal=Label(label_frame_left,padx=2,pady=6,text="Meal: ",font=("arial",14,"bold"))
+        label_meal=Label(label_frame_left,padx=2,pady=6,text="Meal: ",font=("arial",14,"bold"),bg="white",fg="black")
         label_meal.grid(row=5,column=0,sticky=W)
 
         text_meal=ttk.Entry(label_frame_left,width=26,textvariable=self.var_meal,font=("arial",12,"bold"))
@@ -128,7 +122,7 @@ class room_booking:
 
 
         #days
-        label_no_of_days=Label(label_frame_left,padx=2,pady=6,text="No of days: ",font=("arial",14,"bold"))
+        label_no_of_days=Label(label_frame_left,padx=2,pady=6,text="No of days: ",font=("arial",14,"bold"),bg="white",fg="black")
         label_no_of_days.grid(row=6,column=0,sticky=W)
 
         text_no_of_days=ttk.Entry(label_frame_left,width=26,textvariable=self.var_noofdays,font=("arial",12,"bold"))
@@ -139,21 +133,21 @@ class room_booking:
         
         
         #paid tax
-        label_paid_tax=Label(label_frame_left,padx=2,pady=6,text="Tax: ",font=("arial",14,"bold"))
+        label_paid_tax=Label(label_frame_left,padx=2,pady=6,text="Tax: ",font=("arial",14,"bold"),bg="white",fg="black")
         label_paid_tax.grid(row=7,column=0,sticky=W)
 
         text_paid_tax=ttk.Entry(label_frame_left,width=26,textvariable=self.var_paidtax,font=("arial",12,"bold"))
         text_paid_tax.grid(row=7,column=1) 
 
         #sub total
-        label_sub_cost=Label(label_frame_left,padx=2,pady=6,text="Total: ",font=("arial",14,"bold"))
+        label_sub_cost=Label(label_frame_left,padx=2,pady=6,text="Total: ",font=("arial",14,"bold"),bg="white",fg="black")
         label_sub_cost.grid(row=8,column=0,sticky=W)
 
         text_sub_cost=ttk.Entry(label_frame_left,width=26,textvariable=self.var_actualtotal,font=("arial",12,"bold"))
         text_sub_cost.grid(row=8,column=1) 
 
         #total
-        label_total_cost=Label(label_frame_left,padx=2,pady=6,text="Grand Total: ",font=("arial",14,"bold"))
+        label_total_cost=Label(label_frame_left,padx=2,pady=6,text="Grand Total: ",font=("arial",14,"bold"),bg="white",fg="black")
         label_total_cost.grid(row=9,column=0,sticky=W)
 
         text_total_cost=ttk.Entry(label_frame_left,textvariable=self.var_total,width=26,font=("arial",12,"bold"))
@@ -161,7 +155,7 @@ class room_booking:
 
 
         #-----bill button-------
-        btn_bill=Button(label_frame_left,text="Bill",command=self.total,font=("arial",10,"bold"),bg="black",fg="gold",width=5)
+        btn_bill=Button(label_frame_left,text="Bill",command=self.total,font=("arial",10,"bold"),bg="#ad4740",fg="white",width=5)
         btn_bill.grid(row=10,column=1,padx=0,pady=0,sticky=E)
 
 
@@ -169,16 +163,16 @@ class room_booking:
         btn_frame=Frame(label_frame_left,bd=4,relief=RIDGE)
         btn_frame.place(x=5,y=415,width=400,height=50)
         
-        btn_add=Button(btn_frame,text="Add",command=self.add_data,font=("arial",12,"bold"),bg="black",fg="gold",width=7)
+        btn_add=Button(btn_frame,text="Add",command=self.add_data,font=("arial",12,"bold"),bg="#ad4740",fg="white",width=7)
         btn_add.grid(row=0,column=0,padx=8.5,pady=5)
         
-        btn_update=Button(btn_frame,text="Update",command=self.update_data,font=("arial",12,"bold"),bg="black",fg="gold",width=7)
+        btn_update=Button(btn_frame,text="Update",command=self.update_data,font=("arial",12,"bold"),bg="#ad4740",fg="white",width=7)
         btn_update.grid(row=0,column=1,padx=8.25)
         
-        btn_delete=Button(btn_frame,text="Delete",font=("arial",12,"bold"),command=self.delete,bg="black",fg="gold",width=7)
+        btn_delete=Button(btn_frame,text="Delete",font=("arial",12,"bold"),command=self.delete,bg="#ad4740",fg="white",width=7)
         btn_delete.grid(row=0,column=2,padx=8.25)
 
-        btn_reset=Button(btn_frame,text="Reset",font=("arial",12,"bold"),command=self.reset,bg="black",fg="gold",width=7)
+        btn_reset=Button(btn_frame,text="Reset",font=("arial",12,"bold"),command=self.reset,bg="#ad4740",fg="white",width=7)
         btn_reset.grid(row=0,column=3,padx=8.25)
 
         #----------(middle)right side section-------
@@ -235,10 +229,10 @@ class room_booking:
         
 
         #-------Table frame Search system----------
-        label_frame_middle=LabelFrame(self.root,bd=5,relief=RIDGE,text="View and Search Details",padx=2,font=("times new roman",14,"bold"))
+        label_frame_middle=LabelFrame(self.root,bd=5,relief=RIDGE,text="View and Search Details",padx=2,font=("times new roman",14,"bold"),fg="#ad4740",bg="white")
         label_frame_middle.place(x=435,y=290,width=855,height=260)
 
-        lbl_search_by=Label(label_frame_middle,text="Search By: ",font=("arial",14,"bold"),bg="black",fg="gold")
+        lbl_search_by=Label(label_frame_middle,text="Search By: ",font=("arial",14,"bold"),bg="#ad4740",fg="white")
         lbl_search_by.grid(row=0,column=0,sticky=W,padx=5)
 
         self.search_var=StringVar()
@@ -252,10 +246,10 @@ class room_booking:
         entry_search=ttk.Entry(label_frame_middle,textvariable=self.txt_search,width=30,font=("arial",12,"bold"))
         entry_search.grid(row=0,column=2,padx=10)
 
-        btn_search=Button(label_frame_middle,command=self.search,text="Search",font=("arial",12,"bold"),bg="black",fg="gold",width=9)
+        btn_search=Button(label_frame_middle,command=self.search,text="Search",font=("arial",12,"bold"),bg="#ad4740",fg="white",width=9)
         btn_search.grid(row=0,column=3,padx=10)
 
-        btn_show_all=Button(label_frame_middle,text="Show All",command=self.fetch_data,font=("arial",12,"bold"),bg="black",fg="gold",width=9)
+        btn_show_all=Button(label_frame_middle,text="Show All",command=self.fetch_data,font=("arial",12,"bold"),bg="#ad4740",fg="white",width=9)
         btn_show_all.grid(row=0,column=4,padx=10)
 
         #------show data table-----

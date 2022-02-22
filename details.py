@@ -12,29 +12,24 @@ class details:
         self.root=root
         self.root.title("Hotel Management System")
         self.root.geometry("1300x563+226+220")
+        self.root.resizable(False,False)
 
 
         #-------tittle------------------------
-        lbl_title=Label(self.root,text="Room Booking Details",font=("times new roman",20,"bold"),bg="black",fg="gold",bd="4",relief=RIDGE)
+        lbl_title=Label(self.root,text="Room Booking Details",font=("times new roman",20,"bold"),bg="#ad4740",fg="white",bd="4",relief=RIDGE)
         lbl_title.place(x=0,y=0,width=1300,height=50)
 
 
-        #-----------logo------------
-        img2=Image.open(r"C:\Users\thebalanar\Desktop\DBMS\Images\logo.jpg")
-        img2=img2.resize((100,40),Image.ANTIALIAS)
-        self.photoimg2=ImageTk.PhotoImage(img2)
-
-        lblimg=Label(self.root,image=self.photoimg2,bd=0,relief=RIDGE)
-        lblimg.place(x=5,y=2,width=100,height=40)
+        
 
 
         #--------label frame--------------
-        label_frame_left=LabelFrame(self.root,bd=5,relief=RIDGE,text="Room Details",padx=2,font=("times new roman",14,"bold"))
+        label_frame_left=LabelFrame(self.root,bd=5,relief=RIDGE,text="Room Details",padx=2,font=("times new roman",14,"bold"),fg="#ad4740",bg="white")
         label_frame_left.place(x=5,y=50,width=426,height=500)
 
         #-------------------------label and entry---------------
         #Floor
-        label_floor=Label(label_frame_left,padx=2,pady=6,text="Floor: ",font=("arial",14,"bold"))
+        label_floor=Label(label_frame_left,padx=2,pady=6,text="Floor: ",font=("arial",14,"bold"),bg="white",fg="black")
         label_floor.grid(row=0,column=0,sticky=W)
 
         self.var_floor=StringVar()
@@ -43,7 +38,7 @@ class details:
         text_floor.grid(row=0,column=1)
 
         #Room no
-        label_roomNo=Label(label_frame_left,padx=2,pady=6,text="Room no: ",font=("arial",14,"bold"))
+        label_roomNo=Label(label_frame_left,padx=2,pady=6,text="Room no: ",font=("arial",14,"bold"),bg="white",fg="black")
         label_roomNo.grid(row=1,column=0,sticky=W)
 
         self.var_roomNo=StringVar()
@@ -53,7 +48,7 @@ class details:
 
 
         #RoomType
-        label_room_type=Label(label_frame_left,padx=2,pady=6,text="Room type: ",font=("arial",14,"bold"))
+        label_room_type=Label(label_frame_left,padx=2,pady=6,text="Room type: ",font=("arial",14,"bold"),bg="white",fg="black")
         label_room_type.grid(row=2,column=0,sticky=W)
         
         self.var_roomType=StringVar()
@@ -70,22 +65,22 @@ class details:
         btn_frame=Frame(label_frame_left,bd=4,relief=RIDGE)
         btn_frame.place(x=5,y=415,width=400,height=50)
         
-        btn_add=Button(btn_frame,text="Add",command=self.add_data,font=("arial",12,"bold"),bg="black",fg="gold",width=7)
+        btn_add=Button(btn_frame,text="Add",command=self.add_data,font=("arial",12,"bold"),bg="#ad4740",fg="white",width=7)
         btn_add.grid(row=0,column=0,padx=8.5,pady=5)
         
-        btn_update=Button(btn_frame,text="Update",command=self.update_data,font=("arial",12,"bold"),bg="black",fg="gold",width=7)
+        btn_update=Button(btn_frame,text="Update",command=self.update_data,font=("arial",12,"bold"),bg="#ad4740",fg="white",width=7)
         btn_update.grid(row=0,column=1,padx=8.25)
         
-        btn_delete=Button(btn_frame,text="Delete",font=("arial",12,"bold"),command=self.delete,bg="black",fg="gold",width=7)
+        btn_delete=Button(btn_frame,text="Delete",font=("arial",12,"bold"),command=self.delete,bg="#ad4740",fg="white",width=7)
         btn_delete.grid(row=0,column=2,padx=8.25)
 
-        btn_reset=Button(btn_frame,text="Reset",font=("arial",12,"bold"),command=self.reset,bg="black",fg="gold",width=7)
+        btn_reset=Button(btn_frame,text="Reset",font=("arial",12,"bold"),command=self.reset,bg="#ad4740",fg="white",width=7)
         btn_reset.grid(row=0,column=3,padx=8.25)
 
 
 
         #-------Table frame Search system----------
-        label_frame_middle=LabelFrame(self.root,bd=5,relief=RIDGE,text="View and Search Room Details",padx=2,font=("times new roman",14,"bold"))
+        label_frame_middle=LabelFrame(self.root,bd=5,relief=RIDGE,text="View and Search Room Details",padx=2,font=("times new roman",14,"bold"),fg="#ad4740",bg="white")
         label_frame_middle.place(x=435,y=50,width=855,height=500)
 
         

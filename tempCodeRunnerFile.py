@@ -1,1 +1,1 @@
-black
+bg="lightgray",fg="gray"

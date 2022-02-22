@@ -9,6 +9,7 @@ class HotelManagementSystem:
         self.root=root
         self.root.title("Hotel Management System")
         self.root.attributes('-fullscreen',True)
+        self.root.resizable(False,False)
 
 
 
@@ -32,7 +33,7 @@ class HotelManagementSystem:
         lbl_image.place(x=0,y=0,width=140,height=140)
 
         #-------------Title--------------
-        lbl_title=Label(self.root,text="Hotel Management System",font=("times new roman",40,"bold"),bg="black",fg="gold",bd=4,relief=RIDGE)
+        lbl_title=Label(self.root,text="Hotel Management System",font=("Simplifica",40,"bold"),bg="#ad4740",fg="lightgray",bd=2,relief=RIDGE)
         lbl_title.place(x=0,y=140,width=1920,height=50)
 
         #----------frame-----------------
@@ -46,7 +47,7 @@ class HotelManagementSystem:
 
 
         #----------menu-----------------
-        lbl_menu=Label(main_frame,text="MENU",font=("times new roman",20,"bold"),bg="black",fg="gold",bd=4,relief=RIDGE)
+        lbl_menu=Label(main_frame,text="MENU",font=("times new roman",20,"bold"),bg="#ad4740",fg="white",bd=4,relief=RIDGE)
         lbl_menu.place(x=0,y=0,width=230)
 
         #----------button frame---------
@@ -55,19 +56,19 @@ class HotelManagementSystem:
 
 
         #----------------button-----------
-        cust_btn=Button(btn_frame,text="Customer",command=self.customer_details,width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd=0,cursor="hand2")
+        cust_btn=Button(btn_frame,text="Customer",command=self.customer_details,width=22,font=("times new roman",14,"bold"),bg="#ad4740",fg="white",bd=0,cursor="hand2")
         cust_btn.grid(row=0,column=0,pady=0)
 
-        room_btn=Button(btn_frame,text="Room",command=self.room_booking,width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd=0,cursor="hand2")
+        room_btn=Button(btn_frame,text="Room",command=self.room_booking,width=22,font=("times new roman",14,"bold"),bg="#ad4740",fg="white",bd=0,cursor="hand2")
         room_btn.grid(row=1,column=0,pady=1)
 
-        details_btn=Button(btn_frame,text="Details",command=self.details,width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd=0,cursor="hand2")
+        details_btn=Button(btn_frame,text="Details",command=self.details,width=22,font=("times new roman",14,"bold"),bg="#ad4740",fg="white",bd=0,cursor="hand2")
         details_btn.grid(row=2,column=0,pady=1)
         
-        report_btn=Button(btn_frame,text="Report",width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd=0,cursor="hand2")
+        report_btn=Button(btn_frame,text="Report",width=22,font=("times new roman",14,"bold"),bg="#ad4740",fg="white",bd=0,cursor="hand2")
         report_btn.grid(row=3,column=0,pady=1)
 
-        logout_btn=Button(btn_frame,text="Logout",command=self.logout,width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd=0,cursor="hand2")
+        logout_btn=Button(btn_frame,text="Logout",command=self.logout,width=22,font=("times new roman",14,"bold"),bg="#ad4740",fg="white",bd=0,cursor="hand2")
         logout_btn.grid(row=4,column=0,pady=1)
 
 

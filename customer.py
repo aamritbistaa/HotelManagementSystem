@@ -16,6 +16,8 @@ class customer_window:
         self.root=root
         self.root.title("Hotel Management System")
         self.root.geometry("1300x563+226+220")
+        self.root.resizable(False,False)
+
 
         #----------variable----------
         self.var_ref=StringVar()
@@ -35,26 +37,18 @@ class customer_window:
 
 
         #-------tittle------------------------
-        lbl_title=Label(self.root,text="Add Customer Details",font=("times new roman",20,"bold"),bg="black",fg="gold",bd="4",relief=RIDGE)
+        lbl_title=Label(self.root,text="Add Customer Details",font=("times new roman",20,"bold"),bg="#ad4740",fg="white",bd="4",relief=RIDGE)
         lbl_title.place(x=0,y=0,width=1300,height=50)
 
 
-        #-----------logo------------
-        img2=Image.open(r"C:\Users\thebalanar\Desktop\DBMS\Images\logo.jpg")
-        img2=img2.resize((100,40),Image.ANTIALIAS)
-        self.photoimg2=ImageTk.PhotoImage(img2)
-
-        lblimg=Label(self.root,image=self.photoimg2,bd=0,relief=RIDGE)
-        lblimg.place(x=5,y=2,width=100,height=40)
-
 
         #--------label frame--------------
-        label_frame_left=LabelFrame(self.root,bd=5,relief=RIDGE,text="Customer Details",padx=2,font=("times new roman",14,"bold"))
+        label_frame_left=LabelFrame(self.root,bd=5,relief=RIDGE,text="Customer Details",padx=2,font=("times new roman",14,"bold"),fg="#ad4740",bg="white")
         label_frame_left.place(x=5,y=50,width=426,height=500)
 
         #-------------------------label and entry---------------
         #--------cust ref----
-        lbl_cust_ref=Label(label_frame_left,padx=2,pady=6,text="Customer Ref: ",font=("arial",14,"bold"))
+        lbl_cust_ref=Label(label_frame_left,padx=2,pady=6,text="Customer Ref: ",font=("arial",14,"bold"),bg="white",fg="black")
         lbl_cust_ref.grid(row=0,column=0,sticky=W)
 
         entry_cust_ref=ttk.Entry(label_frame_left,textvariable=self.var_ref,state="readonly",width=26,font=("arial",12,"bold"))
@@ -62,7 +56,7 @@ class customer_window:
 
 
         #-----cust name----
-        lbl_cust_name=Label(label_frame_left,padx=2,pady=6,text="Customer Name: ",font=("arial",14,"bold"))
+        lbl_cust_name=Label(label_frame_left,padx=2,pady=6,text="Customer Name: ",font=("arial",14,"bold"),bg="white",fg="black")
         lbl_cust_name.grid(row=1,column=0,sticky=W)
 
         entry_cust_name=ttk.Entry(label_frame_left,textvariable=self.var_name,width=26,font=("arial",12,"bold"))
@@ -70,7 +64,7 @@ class customer_window:
 
 
         #-----gendercombobox----
-        lbl_gender=Label(label_frame_left,padx=2,pady=6,text="Gender: ",font=("arial",14,"bold"))
+        lbl_gender=Label(label_frame_left,padx=2,pady=6,text="Gender: ",font=("arial",14,"bold"),bg="white",fg="black")
         lbl_gender.grid(row=2,column=0,sticky=W)
 
         combo_gender=ttk.Combobox(label_frame_left,textvariable=self.var_gender,font=("arial",12,"bold"),width=24,state="readonly")
@@ -81,7 +75,7 @@ class customer_window:
 
 
         #-----mobile number----
-        lbl_mobile=Label(label_frame_left,padx=2,pady=6,text="Mobile: ",font=("arial",14,"bold"))
+        lbl_mobile=Label(label_frame_left,padx=2,pady=6,text="Mobile: ",font=("arial",14,"bold"),bg="white",fg="black")
         lbl_mobile.grid(row=3,column=0,sticky=W)
 
         entry_mobile=ttk.Entry(label_frame_left,textvariable=self.var_mobile,width=26,font=("arial",12,"bold"))
@@ -91,7 +85,7 @@ class customer_window:
     
 
         #-----nationality  combobox----
-        lbl_nationality=Label(label_frame_left,padx=2,pady=6,text="Nationality: ",font=("arial",14,"bold"))
+        lbl_nationality=Label(label_frame_left,padx=2,pady=6,text="Nationality: ",font=("arial",14,"bold"),bg="white",fg="black")
         lbl_nationality.grid(row=4,column=0,sticky=W)
 
         combo_nationality=ttk.Combobox(label_frame_left,textvariable=self.var_nationality,font=("arial",12,"bold"),width=24,state="readonly")
@@ -101,7 +95,7 @@ class customer_window:
 
 
         #-----idproof type combobox----
-        lbl_id_proof=Label(label_frame_left,padx=2,pady=6,text="Id Proof Type: ",font=("arial",14,"bold"))
+        lbl_id_proof=Label(label_frame_left,padx=2,pady=6,text="Id Proof Type: ",font=("arial",14,"bold"),bg="white",fg="black")
         lbl_id_proof.grid(row=5,column=0,sticky=W)
 
         combo_id_proof=ttk.Combobox(label_frame_left,textvariable=self.var_idproof,font=("arial",12,"bold"),width=24,state="readonly")
@@ -111,14 +105,14 @@ class customer_window:
 
 
         #-----id number----
-        lbl_id_number=Label(label_frame_left,padx=2,pady=6,text="Id Number: ",font=("arial",14,"bold"))
+        lbl_id_number=Label(label_frame_left,padx=2,pady=6,text="Id Number: ",font=("arial",14,"bold"),bg="white",fg="black")
         lbl_id_number.grid(row=6,column=0,sticky=W)
 
         entry_id_number=ttk.Entry(label_frame_left,textvariable=self.var_idnumber,width=26,font=("arial",12,"bold"))
         entry_id_number.grid(row=6,column=1)
 
         #-----email----
-        lbl_email=Label(label_frame_left,padx=2,pady=6,text="Email: ",font=("arial",14,"bold"))
+        lbl_email=Label(label_frame_left,padx=2,pady=6,text="Email: ",font=("arial",14,"bold"),bg="white",fg="black")
         lbl_email.grid(row=7,column=0,sticky=W)
 
         entry_email=ttk.Entry(label_frame_left,width=26,textvariable=self.var_email,font=("arial",12,"bold"))
@@ -127,14 +121,14 @@ class customer_window:
 
 
         #-----address----
-        lbl_address=Label(label_frame_left,padx=2,pady=6,text="Address: ",font=("arial",14,"bold"))
+        lbl_address=Label(label_frame_left,padx=2,pady=6,text="Address: ",font=("arial",14,"bold"),bg="white",fg="black")
         lbl_address.grid(row=8,column=0,sticky=W)
 
         entry_address=ttk.Entry(label_frame_left,width=26,textvariable=self.var_address,font=("arial",12,"bold"))
         entry_address.grid(row=8,column=1)
 
         #-----postalcode----
-        lbl_postal_code=Label(label_frame_left,padx=2,pady=6,text="Postal Code: ",font=("arial",14,"bold"))
+        lbl_postal_code=Label(label_frame_left,padx=2,pady=6,text="Postal Code: ",font=("arial",14,"bold"),bg="white",fg="black")
         lbl_postal_code.grid(row=9,column=0,sticky=W)
 
         entry_postal_code=ttk.Entry(label_frame_left,width=26,textvariable=self.var_postal,font=("arial",12,"bold"))
@@ -150,25 +144,25 @@ class customer_window:
         btn_frame=Frame(label_frame_left,bd=4,relief=RIDGE)
         btn_frame.place(x=5,y=415,width=400,height=50)
 
-        btn_add=Button(btn_frame,text="Add",command=self.add_data,font=("arial",12,"bold"),bg="black",fg="gold",width=7)
+        btn_add=Button(btn_frame,text="Add",command=self.add_data,font=("arial",12,"bold"),bg="#ad4740",fg="white",width=7)
         btn_add.grid(row=0,column=0,padx=8.5,pady=5)
 
-        btn_update=Button(btn_frame,text="Update",command=self.update,font=("arial",12,"bold"),bg="black",fg="gold",width=7)
+        btn_update=Button(btn_frame,text="Update",command=self.update,font=("arial",12,"bold"),bg="#ad4740",fg="white",width=7)
         btn_update.grid(row=0,column=1,padx=8.25)
 
-        btn_delete=Button(btn_frame,text="Delete",command=self.delete,font=("arial",12,"bold"),bg="black",fg="gold",width=7)
+        btn_delete=Button(btn_frame,text="Delete",command=self.delete,font=("arial",12,"bold"),bg="#ad4740",fg="white",width=7)
         btn_delete.grid(row=0,column=2,padx=8.25)
 
-        btn_reset=Button(btn_frame,text="Reset",command=self.reset,font=("arial",12,"bold"),bg="black",fg="gold",width=7)
+        btn_reset=Button(btn_frame,text="Reset",command=self.reset,font=("arial",12,"bold"),bg="#ad4740",fg="white",width=7)
         btn_reset.grid(row=0,column=3,padx=8.25)
 
 
 
         #-------Table frame Search system----------
-        label_frame_middle=LabelFrame(self.root,bd=5,relief=RIDGE,text="View and Search Details",padx=2,font=("times new roman",14,"bold"))
+        label_frame_middle=LabelFrame(self.root,bd=5,relief=RIDGE,text="View and Search Details",padx=2,font=("times new roman",14,"bold"),fg="#ad4740",bg="white")
         label_frame_middle.place(x=435,y=50,width=855,height=500)
 
-        lbl_search_by=Label(label_frame_middle,text="Search By: ",font=("arial",14,"bold"),bg="black",fg="gold")
+        lbl_search_by=Label(label_frame_middle,text="Search By: ",font=("arial",14,"bold"),bg="#ad4740",fg="white")
         lbl_search_by.grid(row=0,column=0,sticky=W,padx=5)
 
         self.search_var=StringVar()
@@ -182,10 +176,10 @@ class customer_window:
         entry_search=ttk.Entry(label_frame_middle,textvariable=self.txt_search,width=30,font=("arial",12,"bold"))
         entry_search.grid(row=0,column=2,padx=10)
 
-        btn_search=Button(label_frame_middle,text="Search",command=self.search,font=("arial",12,"bold"),bg="black",fg="gold",width=9)
+        btn_search=Button(label_frame_middle,text="Search",command=self.search,font=("arial",12,"bold"),bg="#ad4740",fg="white",width=9)
         btn_search.grid(row=0,column=3,padx=10)
 
-        btn_show_all=Button(label_frame_middle,text="Show All",command=self.fetch_data,font=("arial",12,"bold"),bg="black",fg="gold",width=9)
+        btn_show_all=Button(label_frame_middle,text="Show All",command=self.fetch_data,font=("arial",12,"bold"),bg="#ad4740",fg="white",width=9)
         btn_show_all.grid(row=0,column=4,padx=10)
 
         #------show data table-----

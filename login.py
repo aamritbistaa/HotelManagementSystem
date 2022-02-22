@@ -23,7 +23,7 @@ class login:
 
 
 
-        title=Label(frameLogin,text="Login Here",font=("Simplifica",35,"bold"),bg="white",fg="#d77337").place(x=100,y=30)
+        title=Label(frameLogin,text="Login Here",font=("Simplifica",35,"bold"),fg="#ad4740",bg="white").place(x=100,y=30)
 
 
 #login section
@@ -31,8 +31,11 @@ class login:
         label_user.place(x=100,y=140)
 
 
+        self.var_user=StringVar()
+        
+
         #entry field
-        self.txt_user=Entry(frameLogin,font=("Goudy old style",15),bg="lightgray",fg="gray")
+        self.txt_user=Entry(frameLogin,font=("Goudy old style",15),bg="lightgray",fg="gray",textvariable=self.var_user)
         self.txt_user.place(x=100,y=170,width=350,height=35)
 
 
@@ -40,27 +43,22 @@ class login:
         label_password=Label(frameLogin,text="Password",font=("Goudy old style",15,"bold"),bg="white",fg="gray")
         label_password.place(x=100,y=220)
 
-
+        self.var_password=StringVar()
         #entry field
-        self.txt_password=Entry(frameLogin,font=("Goudy old style",15),bg="lightgray",fg="gray")
+        self.txt_password=Entry(frameLogin,font=("Goudy old style",15),bg="lightgray",fg="gray",textvariable=self.var_password)
         self.txt_password.place(x=100,y=250,width=350,height=35)
         self.txt_password.config(show="*")
 
 
 #forget button
-        forget_btn=Button(frameLogin,text="Forget Password?",cursor="hand2",bg="white",font=("Goudy old style",13),bd=0,fg="#d25d17")
-        forget_btn.place(x=100,y=290)
+       # forget_btn=Button(frameLogin,text="Forget Password?",cursor="hand2",bg="#ad4740",fg="white",font=("Goudy old style",13),bd=0)
+       # forget_btn.place(x=100,y=290)
 
 #login button
-        login_btn=Button(self.root,text="Login",fg="white",command=self.login_function,cursor="hand2",font=("Goudy old style",15),bd=0,bg="#d25d17",width=10)
+        login_btn=Button(self.root,text="Login",bg="#ad4740",fg="white",command=self.login_function,cursor="hand2",font=("Goudy old style",15),bd=0,width=10)
         login_btn.place(x=350,y=535)
 
-        #--------------------Exit button--------
-
-        # exit_btn=Button(self.root,text="Exit",width=10,font=("times new roman",14,"bold"),bg="black",fg="white",bd=0,command=root.destroy,cursor="hand2")
-        # exit_btn.pack(side=TOP,anchor=NE)
-
-
+      
 
     def login_function(self):
         if self.txt_password.get()=="" or self.txt_user.get=="":
@@ -70,7 +68,15 @@ class login:
             messagebox.showerror("Error","Invalid Username/Password",parent=self.root)
 
         else:
+            self.reset()
+
             self.HotelManagementSystem()
+            
+            
+            
+    def reset(self):
+        self.var_user.set(""),
+        self.var_password.set("")
 
         
 
