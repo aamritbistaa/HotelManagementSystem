@@ -4,10 +4,6 @@ from PIL import Image,ImageTk
 from tkinter import ttk
 import mysql.connector
 from tkinter import messagebox
-from time import strftime
-from datetime import datetime
-
-
 
 
 
@@ -62,8 +58,10 @@ class details:
         
         self.var_roomType=StringVar()
 
-        text_room_type=ttk.Entry(label_frame_left,textvariable=self.var_roomType,width=26,font=("arial",12,"bold"))
-        text_room_type.grid(row=2,column=1)
+        combo_room_type=ttk.Combobox(label_frame_left,font=("arial",12,"bold"),textvariable=self.var_roomType,width=24,state="readonly")
+        combo_room_type["value"]=("Single","Double","Suit","Villa")
+        combo_room_type.current(0)
+        combo_room_type.grid(row=2,column=1)
 
 
 
@@ -75,13 +73,13 @@ class details:
         btn_add=Button(btn_frame,text="Add",command=self.add_data,font=("arial",12,"bold"),bg="black",fg="gold",width=7)
         btn_add.grid(row=0,column=0,padx=8.5,pady=5)
         
-        btn_update=Button(btn_frame,text="Update",font=("arial",12,"bold"),bg="black",fg="gold",width=7)
+        btn_update=Button(btn_frame,text="Update",command=self.update_data,font=("arial",12,"bold"),bg="black",fg="gold",width=7)
         btn_update.grid(row=0,column=1,padx=8.25)
         
-        btn_delete=Button(btn_frame,text="Delete",font=("arial",12,"bold"),bg="black",fg="gold",width=7)
+        btn_delete=Button(btn_frame,text="Delete",font=("arial",12,"bold"),command=self.delete,bg="black",fg="gold",width=7)
         btn_delete.grid(row=0,column=2,padx=8.25)
 
-        btn_reset=Button(btn_frame,text="Reset",font=("arial",12,"bold"),bg="black",fg="gold",width=7)
+        btn_reset=Button(btn_frame,text="Reset",font=("arial",12,"bold"),command=self.reset,bg="black",fg="gold",width=7)
         btn_reset.grid(row=0,column=3,padx=8.25)
 
 
@@ -115,6 +113,21 @@ class details:
         self.room_table.column("roomType",width=100)
 
         self.room_table.pack(fill=BOTH,expand=1)
+        self.room_table.bind("<ButtonRelease-1>",self.get_cursor)
+        self.fetch_data()
+
+
+    #get cursor to bind data from db to input section
+    def get_cursor(self,event=""):
+        cursor_row=self.room_table.focus()
+        content=self.room_table.item(cursor_row)
+        row=content["values"]
+
+        self.var_floor.set(row[0])
+        self.var_roomNo.set(row[1])
+        self.var_roomType.set(row[2])
+        
+
 
 
     #add data
@@ -133,7 +146,7 @@ class details:
                                                                             ))
 
                 conn.commit()
-                #self.fetch_data()
+                self.fetch_data()
                 conn.close()
                 messagebox.showinfo("Success","Room Added",parent=self.root)
             except Exception as es:
@@ -141,7 +154,69 @@ class details:
 
 
 
+    #fetch data
+    def fetch_data(self):
+        conn=mysql.connector.connect(host="localhost",username="root",password="",database="hotelmanagementsystem")
+        my_cursor=conn.cursor()
+        my_cursor.execute("select * from details")
+        rows=my_cursor.fetchall()
+        if len(rows)!=0:
+            self.room_table.delete(*self.room_table.get_children())
+            for i in rows:
+                self.room_table.insert("",END,values=i)
         
+        conn.commit()
+        conn.close()
+
+
+    #update
+    def update_data(self):
+        if self.var_floor.get()=="" or self.var_roomNo.get()=="" or self.var_roomType.get()=="":
+            messagebox.showerror("Error","Please enter all etails",parent=self.root)
+
+        else:
+            conn=mysql.connector.connect(host="localhost",username="root",password="",database="hotelmanagementsystem")
+            my_cursor=conn.cursor()
+            my_cursor.execute("update details set floor=%s,roomType=%s where roomNo=%s",(
+                                                                            self.var_floor.get(),
+                                                                            self.var_roomType.get(),
+                                                                            self.var_roomNo.get()                                                          
+                                                                            ))
+
+            conn.commit()
+            self.fetch_data()
+            conn.close()
+            messagebox.showinfo("Update","Room details has been updated",parent=self.root)
+
+
+
+    #delete
+    def delete(self):
+        delete=messagebox.askyesno("Hotel Management System","Do you want to delete this entry",parent=self.root)
+        if delete>0:
+            conn=mysql.connector.connect(host="localhost",username="root",password="",database="hotelmanagementsystem")
+            my_cursor=conn.cursor()
+            #----method2----
+            query="delete from details where roomNo=%s"
+            value=(self.var_roomNo.get(),)
+            my_cursor.execute(query,value)
+
+        else:
+            if not delete:
+                return
+
+        conn.commit()
+        self.fetch_data()
+        conn.close()
+
+
+
+    #reset
+    def reset(self):
+        self.var_floor.set("")
+        self.var_roomNo.set("")
+        self.var_roomType.set("")
+
 
 
 

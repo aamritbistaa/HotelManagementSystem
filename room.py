@@ -83,8 +83,14 @@ class room_booking:
         label_room_type=Label(label_frame_left,padx=2,pady=6,text="Room Type: ",font=("arial",14,"bold"))
         label_room_type.grid(row=3,column=0,sticky=W)
 
+        conn=mysql.connector.connect(host="localhost",username="root",password="",database="hotelmanagementsystem")
+        my_cursor=conn.cursor()
+        my_cursor.execute("select roomType from details")
+
+        roomtype=my_cursor.fetchall()
+
         combo_room_type=ttk.Combobox(label_frame_left,font=("arial",12,"bold"),textvariable=self.var_roomtype,width=24,state="readonly")
-        combo_room_type["value"]=("Single","Double","Suit","Villa")
+        combo_room_type["value"]=roomtype
         combo_room_type.current(0)
         combo_room_type.grid(row=3,column=1)
 
@@ -92,8 +98,21 @@ class room_booking:
         label_available=Label(label_frame_left,padx=2,pady=6,text="Available Room: ",font=("arial",14,"bold"))
         label_available.grid(row=4,column=0,sticky=W)
 
-        text_available=ttk.Entry(label_frame_left,width=26,textvariable=self.var_roomavailable,font=("arial",12,"bold"))
-        text_available.grid(row=4,column=1)        
+        # text_available=ttk.Entry(label_frame_left,width=26,textvariable=self.var_roomavailable,font=("arial",12,"bold"))
+        # text_available.grid(row=4,column=1)
+
+
+        my_cursor.execute("select roomNo from details")
+
+        rows=my_cursor.fetchall()
+
+
+        combo_room_no=ttk.Combobox(label_frame_left,font=("arial",12,"bold"),textvariable=self.var_roomavailable,width=24,state="readonly")
+        combo_room_no["value"]=rows
+        combo_room_no.current(0)
+        combo_room_no.grid(row=4,column=1)
+        conn.commit()
+        conn.close()  
 
         #----food-----
         #meal
@@ -486,7 +505,7 @@ class room_booking:
 
     #update
     def update_data(self):
-        if self.var_contact.get()=="":
+        if self.var_contact.get()=="" or self.var_checkin.get()=="":
             messagebox.showerror("Error","Please Enter a valid contact number",parent=self.root)
 
         else:

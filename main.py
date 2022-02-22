@@ -1,5 +1,4 @@
 from tkinter import *
-from turtle import width
 from PIL import Image,ImageTk
 from customer import customer_window
 from room import room_booking
@@ -42,8 +41,8 @@ class HotelManagementSystem:
 
         #--------------------Exit button--------
 
-        exit_btn=Button(self.root,text="Exit",width=10,font=("times new roman",14,"bold"),bg="black",fg="white",bd=0,command=root.destroy,cursor="hand2")
-        exit_btn.pack(side=TOP,anchor=NE)
+        # exit_btn=Button(self.root,text="Exit",width=10,font=("times new roman",14,"bold"),bg="black",fg="white",bd=0,command=root.destroy,cursor="hand2")
+        # exit_btn.pack(side=TOP,anchor=NE)
 
 
         #----------menu-----------------
@@ -68,7 +67,7 @@ class HotelManagementSystem:
         report_btn=Button(btn_frame,text="Report",width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd=0,cursor="hand2")
         report_btn.grid(row=3,column=0,pady=1)
 
-        logout_btn=Button(btn_frame,text="Logout",width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd=0,cursor="hand2")
+        logout_btn=Button(btn_frame,text="Logout",command=self.logout,width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd=0,cursor="hand2")
         logout_btn.grid(row=4,column=0,pady=1)
 
 
@@ -110,6 +109,9 @@ class HotelManagementSystem:
     def details(self):
         self.new_window=Toplevel(self.root)
         self.app=details(self.new_window)
+
+    def logout(self):
+        self.root.destroy()
 
         
 
