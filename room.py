@@ -603,8 +603,6 @@ class room_booking:
         combo_room_no["value"]=rows
         combo_room_no.current(0)
         combo_room_no.place(x=175,y=231)
-
-        print(rows)
         conn.commit()
         conn.close()  
 
