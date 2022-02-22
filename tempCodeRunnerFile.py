@@ -1,1 +1,1 @@
-grid
+self.root.destroy()

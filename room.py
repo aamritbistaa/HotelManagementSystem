@@ -195,7 +195,7 @@ class room_booking:
         #frame
         
             #insert Hotel image for mid section
-        img_center_mid=Image.open(r"C:\Users\thebalanar\Desktop\DBMS\Images\singleRoom.webp")
+        img_center_mid=Image.open(r"Images\singleRoom.webp")
         img_center_mid=img_center_mid.resize((490,235),Image.ANTIALIAS)
         self.photoimg_center_mid=ImageTk.PhotoImage(img_center_mid)
 
@@ -207,28 +207,28 @@ class room_booking:
 
 
         #images
-        img3=Image.open(r"C:\Users\thebalanar\Desktop\DBMS\Images\singleRoom.webp")
+        img3=Image.open(r"Images\singleRoom.webp")
         img3=img3.resize((172,114),Image.ANTIALIAS)
         self.photoimg3=ImageTk.PhotoImage(img3)
 
         lblimg=Label(label_frame_top_middle,image=self.photoimg3,bd=1,relief=RIDGE)
         lblimg.grid(row=0,column=0)
 
-        img4=Image.open(r"C:\Users\thebalanar\Desktop\DBMS\Images\doubleRoom.webp")
+        img4=Image.open(r"Images\doubleRoom.webp")
         img4=img4.resize((172,114),Image.ANTIALIAS)
         self.photoimg4=ImageTk.PhotoImage(img4)
 
         lblimg=Label(label_frame_top_middle,image=self.photoimg4,bd=1,relief=RIDGE)
         lblimg.grid(row=0,column=1)
 
-        img5=Image.open(r"C:\Users\thebalanar\Desktop\DBMS\Images\suit.webp")
+        img5=Image.open(r"Images\suit.webp")
         img5=img5.resize((172,114),Image.ANTIALIAS)
         self.photoimg5=ImageTk.PhotoImage(img5)
 
         lblimg=Label(label_frame_top_middle,image=self.photoimg5,bd=1,relief=RIDGE)
         lblimg.grid(row=1,column=0)
 
-        img6=Image.open(r"C:\Users\thebalanar\Desktop\DBMS\Images\villa.webp")
+        img6=Image.open(r"Images\villa.webp")
         img6=img6.resize((172,114),Image.ANTIALIAS)
         self.photoimg6=ImageTk.PhotoImage(img6)
 

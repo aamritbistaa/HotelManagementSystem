@@ -15,7 +15,7 @@ class HotelManagementSystem:
 
 
         #--------------First Image------------------
-        image1=Image.open(r"C:\Users\thebalanar\Desktop\DBMS\Images\coverpic.jpg")
+        image1=Image.open(r"Images\coverpic.jpg")
         image1=image1.resize((1920,280),Image.ANTIALIAS)
         self.photoimage1=ImageTk.PhotoImage(image1)
 
@@ -24,7 +24,7 @@ class HotelManagementSystem:
         lbl_image.place(x=0,y=0,width=1920,height=140)
 
         #------------Logo-------------
-        image2=Image.open(r"C:\Users\thebalanar\Desktop\DBMS\Images\logo.jpg")
+        image2=Image.open(r"Images\logo.jpg")
         image2=image2.resize((140,140),Image.ANTIALIAS)
         self.photoimage2=ImageTk.PhotoImage(image2)
 
@@ -73,7 +73,7 @@ class HotelManagementSystem:
 
 
         #---------Right side image----------
-        image3=Image.open(r"C:\Users\thebalanar\Desktop\DBMS\Images\front image.jpg")
+        image3=Image.open(r"Images\front image.jpg")
         image3=image3.resize((1310,796),Image.ANTIALIAS)
         self.photoimage3=ImageTk.PhotoImage(image3)
 
@@ -82,7 +82,7 @@ class HotelManagementSystem:
         lbl_image1.place(x=225,y=0,width=1310,height=796)
 
         #--------bottom left images---------
-        image4=Image.open(r"C:\Users\thebalanar\Desktop\DBMS\Images\food.jpg")
+        image4=Image.open(r"Images\food.jpg")
         image4=image4.resize((230,210),Image.ANTIALIAS)
         self.photoimage4=ImageTk.PhotoImage(image4)
 
@@ -91,7 +91,7 @@ class HotelManagementSystem:
         lbl_image4.place(x=0,y=225,width=230,height=210)
 
 
-        image5=Image.open(r"C:\Users\thebalanar\Desktop\DBMS\Images\hotel.jpg")
+        image5=Image.open(r"Images\hotel.jpg")
         image5=image5.resize((230,190),Image.ANTIALIAS)
         self.photoimage5=ImageTk.PhotoImage(image5)
 
