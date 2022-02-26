@@ -4,6 +4,7 @@ from customer import customer_window
 from room import room_booking
 from details import details
 
+
 class HotelManagementSystem:
     def __init__(self,root):
         self.root=root
@@ -122,6 +123,11 @@ class HotelManagementSystem:
 
     def logout(self):
         self.root.destroy()
+
+    # def logout(self):
+    #     self.new_window=Toplevel(self.root)
+    #     self.app=login(self.new_window)
+
 
 
         
