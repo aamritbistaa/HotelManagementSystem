@@ -3,6 +3,7 @@ Start with starting a mysql database
         
 It should have host="localhost",username="root",password="",database="hotelmanagementsystem"
     There should be 3 tables in a database 
+    
         customer
             it contains 
             column name:        Datatype:
