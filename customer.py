@@ -1,7 +1,6 @@
 from msilib.schema import ComboBox
 from textwrap import fill
 from tkinter import *
-from PIL import Image,ImageTk
 from tkinter import ttk
 import mysql.connector
 import random
