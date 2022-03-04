@@ -195,7 +195,7 @@ class room_booking:
         #frame
         
             #insert Hotel image for mid section
-        img_center_mid=Image.open(r"Images\singleRoom.webp")
+        img_center_mid=Image.open(r"Images\hotel1.jpg")
         img_center_mid=img_center_mid.resize((490,235),Image.ANTIALIAS)
         self.photoimg_center_mid=ImageTk.PhotoImage(img_center_mid)
 
