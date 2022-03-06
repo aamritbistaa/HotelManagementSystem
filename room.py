@@ -19,7 +19,7 @@ class room_booking:
         self.root.resizable(False,False)
 
         #--------------Variables----------
-        self.var_contact=StringVar()
+        self.var_customer_ref=StringVar()
         self.var_checkin=StringVar()
         self.var_checkout=StringVar()
         self.var_roomtype=StringVar()
@@ -46,15 +46,15 @@ class room_booking:
         label_frame_left.place(x=5,y=50,width=426,height=500)
 
         #-------------------------label and entry---------------
-        #contact number
-        label_contact=Label(label_frame_left,padx=0,pady=6,text="Contact:",font=("arial",14,"bold"),bg="white",fg="black")
-        label_contact.grid(row=0,column=0,sticky=W)
+        #customer refrencce number number
+        label_customer_ref=Label(label_frame_left,padx=0,pady=6,text="Customer Ref:",font=("arial",14,"bold"),bg="white",fg="black")
+        label_customer_ref.grid(row=0,column=0,sticky=W)
 
-        entry_contact=ttk.Entry(label_frame_left,width=19,textvariable=self.var_contact,font=("arial",12,"bold"))
-        entry_contact.grid(row=0,column=1,sticky=W)
+        entry_customer_ref=ttk.Entry(label_frame_left,width=19,textvariable=self.var_customer_ref,font=("arial",12,"bold"))
+        entry_customer_ref.grid(row=0,column=1,sticky=W)
 
         #fetch data button
-        btn_fetch_data=Button(label_frame_left,command=self.fetch_contact,text="Get data",font=("arial",8,"bold"),bg="#ad4740",fg="white",width=7)
+        btn_fetch_data=Button(label_frame_left,command=self.fetch_customer_ref,text="Get data",font=("arial",8,"bold"),bg="#ad4740",fg="white",width=7)
         btn_fetch_data.place(x=345,y=6)
 
 
@@ -245,7 +245,7 @@ class room_booking:
 
         self.search_var=StringVar()
         combo_search=ttk.Combobox(label_frame_middle,textvariable=self.search_var,font=("arial",12,"bold"),width=15,state="readonly")
-        combo_search["value"]=("Contact","Room")
+        combo_search["value"]=("Ref","roomtype")
         combo_search.current(0)
         combo_search.grid(row=0,column=1,padx=10)
 
@@ -269,14 +269,14 @@ class room_booking:
 
 
 
-        self.room_table=ttk.Treeview(label_detail_frame,column=("contact","checkin","checkout","roomtype","roomavailable","meal","noofdays"),xscrollcommand=scroll_x.set,yscrollcommand=scroll_y)
+        self.room_table=ttk.Treeview(label_detail_frame,column=("ref","checkin","checkout","roomtype","roomavailable","meal","noofdays"),xscrollcommand=scroll_x.set,yscrollcommand=scroll_y)
         scroll_x.pack(side=BOTTOM,fill=X)
         scroll_y.pack(side=RIGHT,fill=Y)
 
         scroll_x.config(command=self.room_table.xview)
         scroll_y.config(command=self.room_table.yview)
 
-        self.room_table.heading("contact",text="Contact")
+        self.room_table.heading("ref",text="Cust Refrence No.")
         self.room_table.heading("checkin",text="Checkin")
         self.room_table.heading("checkout",text="Checkout")
         self.room_table.heading("roomtype",text="Room Type")        
@@ -286,7 +286,7 @@ class room_booking:
 
         self.room_table["show"]="headings"
         
-        self.room_table.column("contact",width=100)
+        self.room_table.column("ref",width=100)
         self.room_table.column("checkin",width=100)
         self.room_table.column("checkout",width=100)
         self.room_table.column("roomtype",width=100)
@@ -301,19 +301,19 @@ class room_booking:
 
 
     #-------------------------Data fetch----------------
-    def fetch_contact(self):
-        if self.var_contact.get()=="":
-            messagebox.showerror("Error","Invalid contact number",parent=self.root)
+    def fetch_customer_ref(self):
+        if self.var_customer_ref.get()=="":
+            messagebox.showerror("Error","Invalid customer ref number",parent=self.root)
         else:
             conn=mysql.connector.connect(host="localhost",username="root",password="",database="hotelmanagementsystem")
             my_cursor=conn.cursor()
-            query=("select Name from customer where mobile=%s")
-            value=(self.var_contact.get(),)
+            query=("select Name from customer where ref=%s")
+            value=(self.var_customer_ref.get(),)
             my_cursor.execute(query,value)
             row=my_cursor.fetchone()
 
             if row==None:
-                messagebox.showerror("Error","User not found \nInvalid contact number",parent=self.root)
+                messagebox.showerror("Error","User not found \nInvalid customer ref no",parent=self.root)
             else:
                 
                 
@@ -331,8 +331,8 @@ class room_booking:
                 #display Gender::
                 conn=mysql.connector.connect(host="localhost",username="root",password="",database="hotelmanagementsystem")
                 my_cursor=conn.cursor()
-                query=("select Gender from customer where mobile=%s")
-                value=(self.var_contact.get(),)
+                query=("select Gender from customer where ref=%s")
+                value=(self.var_customer_ref.get(),)
                 my_cursor.execute(query,value)
                 row=my_cursor.fetchone()
 
@@ -348,8 +348,8 @@ class room_booking:
                 #display nationality::
                 conn=mysql.connector.connect(host="localhost",username="root",password="",database="hotelmanagementsystem")
                 my_cursor=conn.cursor()
-                query=("select nationality from customer where mobile=%s")
-                value=(self.var_contact.get(),)
+                query=("select nationality from customer where ref=%s")
+                value=(self.var_customer_ref.get(),)
                 my_cursor.execute(query,value)
                 row=my_cursor.fetchone()
 
@@ -367,8 +367,8 @@ class room_booking:
 
                 conn=mysql.connector.connect(host="localhost",username="root",password="",database="hotelmanagementsystem")
                 my_cursor=conn.cursor()
-                query=("select idproof from customer where mobile=%s")
-                value=(self.var_contact.get(),)
+                query=("select idproof from customer where ref=%s")
+                value=(self.var_customer_ref.get(),)
                 my_cursor.execute(query,value)
                 row=my_cursor.fetchone()
 
@@ -386,8 +386,8 @@ class room_booking:
 
                 conn=mysql.connector.connect(host="localhost",username="root",password="",database="hotelmanagementsystem")
                 my_cursor=conn.cursor()
-                query=("select idnumber from customer where mobile=%s")
-                value=(self.var_contact.get(),)
+                query=("select idnumber from customer where ref=%s")
+                value=(self.var_customer_ref.get(),)
                 my_cursor.execute(query,value)
                 row=my_cursor.fetchone()
 
@@ -404,8 +404,8 @@ class room_booking:
 
                 conn=mysql.connector.connect(host="localhost",username="root",password="",database="hotelmanagementsystem")
                 my_cursor=conn.cursor()
-                query=("select Email from customer where mobile=%s")
-                value=(self.var_contact.get(),)
+                query=("select Email from customer where ref=%s")
+                value=(self.var_customer_ref.get(),)
                 my_cursor.execute(query,value)
                 row=my_cursor.fetchone()
 
@@ -422,8 +422,8 @@ class room_booking:
 
                 conn=mysql.connector.connect(host="localhost",username="root",password="",database="hotelmanagementsystem")
                 my_cursor=conn.cursor()
-                query=("select address from customer where mobile=%s")
-                value=(self.var_contact.get(),)
+                query=("select address from customer where ref=%s")
+                value=(self.var_customer_ref.get(),)
                 my_cursor.execute(query,value)
                 row=my_cursor.fetchone()
 
@@ -518,7 +518,7 @@ class room_booking:
         content=self.room_table.item(cursor_row)
         row=content["values"]
         
-        self.var_contact.set(row[0])
+        self.var_customer_ref.set(row[0])
         self.var_checkin.set(row[1])
         self.var_checkout.set(row[2])
         self.var_roomtype.set(row[3])
@@ -528,20 +528,20 @@ class room_booking:
 
     #update
     def update_data(self):
-        if self.var_contact.get()=="" or self.var_checkin.get()=="":
-            messagebox.showerror("Error","Please Enter a valid contact number",parent=self.root)
+        if self.var_customer_ref.get()=="" or self.var_checkin.get()=="":
+            messagebox.showerror("Error","Please Enter a valid customer ref number",parent=self.root)
 
         else:
             conn=mysql.connector.connect(host="localhost",username="root",password="",database="hotelmanagementsystem")
             my_cursor=conn.cursor()
-            my_cursor.execute("update room set check_in=%s,check_out=%s,roomtype=%s,roomavailable=%s,meal=%s,noofdays=%s where contact=%s",(
+            my_cursor.execute("update room set check_in=%s,check_out=%s,roomtype=%s,roomavailable=%s,meal=%s,noofdays=%s where ref=%s",(
                                                                             self.var_checkin.get(),
                                                                             self.var_checkout.get(),
                                                                             self.var_roomtype.get(),
                                                                             self.var_roomavailable.get(),
                                                                             self.var_meal.get(),
                                                                             self.var_noofdays.get(),
-                                                                            self.var_contact.get()                                                           
+                                                                            self.var_customer_ref.get()                                                           
                                                                             ))
 
             conn.commit()
@@ -553,7 +553,7 @@ class room_booking:
 
     #add data to database
     def add_data(self):
-        if self.var_contact.get()=="" or self.var_checkin=="" or self.var_roomavailable=="":
+        if self.var_customer_ref.get()=="" or self.var_checkin=="" or self.var_roomavailable=="":
             messagebox.showerror("Error","All fields are required",parent=self.root)
 
         else:
@@ -561,7 +561,7 @@ class room_booking:
                 conn=mysql.connector.connect(host="localhost",username="root",password="",database="hotelmanagementsystem")
                 my_cursor=conn.cursor()
                 my_cursor.execute("insert into room values(%s,%s,%s,%s,%s,%s,%s)",(
-                                                                            self.var_contact.get(),
+                                                                            self.var_customer_ref.get(),
                                                                             self.var_checkin.get(),
                                                                             self.var_checkout.get(),
                                                                             self.var_roomtype.get(),
@@ -598,7 +598,7 @@ class room_booking:
 
 
     def reset(self):
-        self.var_contact.set("")
+        self.var_customer_ref.set("")
         self.var_checkin.set("")
         self.var_checkout.set("")
         self.var_roomtype.set("")
