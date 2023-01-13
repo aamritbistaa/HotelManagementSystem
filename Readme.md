@@ -1,3 +1,5 @@
+A database project done with python and mysql.
+
 Start with starting a mysql database
 
 It should have host="localhost",user="root",password="",database="hotelmanagementsystem"
