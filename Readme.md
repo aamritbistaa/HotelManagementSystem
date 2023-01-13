@@ -1,11 +1,10 @@
 Start with starting a mysql database
-        
-        
-It should have host="localhost",username="root",password="",database="hotelmanagementsystem"
-    There should be 3 tables in a database 
-    
+
+It should have host="localhost",user="root",password="",database="hotelmanagementsystem"
+There should be 3 tables in a database
+
         customer
-            it contains 
+            it contains
             column name:        Datatype:
                 ref             INT(11)[Primary key, Not null]
                 name            VARCHAR(45)
@@ -25,11 +24,11 @@ It should have host="localhost",username="root",password="",database="hotelmanag
                 roomNo          VARCHAR(45)[Primary key, Not null]
                 roomType        VARCHAR(45)
 
-                
+
         room
             it contains
             column name:        Datatype:
-                contact         VARCHAR(45)
+                ref         VARCHAR(45)
                 check_in        VARCHAR(45)
                 check_out       VARCHAR(45)
                 roomtype        VARCHAR(45)
@@ -37,20 +36,24 @@ It should have host="localhost",username="root",password="",database="hotelmanag
                 meal            VARCHAR(45)
                 noofdays        VARCHAR(45)
 
-
-Start the code with login page[room.py]
+Start the code with login page[login.py]
 [Admin,Admin]
 
 then you will be navigated to main screen[main.py]
-there you will be able to choose 3 options 
+there you will be able to choose 3 options
 
 1.Customer Window[customer.py]
-    a place to add remove update customer window
-
+a place to add remove update customer window
 
 2.Room Window[room.py]
-    a place to book and clear room
-
+a place to book and clear room
 
 3.Hotel[details.py]
-    a place where you can add,removeand modify room information
+a place where you can add,removeand modify room information
+
+Meal detail:
+
+- Breakfast
+- Dinner
+- Lunch
+- All
